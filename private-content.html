@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contenidos Privados</title>
+  <link rel="stylesheet" href="styles/globals.css">
+</head>
+<body>
+  <header class="container" style="padding: 1rem 0;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 style="font-size: 1.5rem; font-weight: 600;">Contenidos Privados</h1>
+      <div>
+        <a href="dashboard.html" class="btn" style="margin-right: 0.5rem;">Volver al Dashboard</a>
+      </div>
+    </nav>
+  </header>
+  <main class="container" style="margin-top: 2rem;">
+    <section style="margin-bottom: 2rem;">
+      <input type="text" id="filter" placeholder="Filtrar por nombre..." class="input" style="width: 100%; padding: 0.5rem;">
+    </section>
+
+    <section class="card">
+        <h2 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Lista de Contenidos</h2>
+        <div id="content-list" style="display: flex; flex-direction: column; gap: 1rem;"></div>
+      </section>
+      
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-dash" id="preview-modal">
+    <div class="modal-content-dash">
+      <button class="modal-close-dash" id="close-modal">&times;</button>
+      <h2 id="modal-title">Previsualización</h2>
+      <p id="modal-body">Contenido del artículo...</p>
+    </div>
+  </div>
+  <script src="js/private-content.js"></script>
+</body>
+</html>

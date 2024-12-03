@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Nuevo Contenido</title>
+  <link rel="stylesheet" href="styles/globals.css">
+</head>
+<body>
+  <header class="container" style="padding: 1rem 0;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 style="font-size: 1.5rem; font-weight: 600;">Crear Nuevo Contenido</h1>
+      <div>
+        <a href="dashboard.html" class="btn">Volver al Dashboard</a>
+      </div>
+    </nav>
+  </header>
+  <main class="container" style="margin-top: 2rem;">
+    <section class="card">
+      <h2 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Detalles del Contenido</h2>
+      <form id="create-content-form" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+          <label for="title" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Título</label>
+          <input type="text" id="title" name="title" placeholder="Escribe el título aquí" required>
+        </div>
+        <div>
+          <label for="type" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Tipo de Contenido</label>
+          <select id="type" name="type" required>
+            <option value="public">Público</option>
+            <option value="private">Privado</option>
+            <option value="organizational">Organizacional</option>
+          </select>
+        </div>
+        <div>
+          <label for="content-body" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Contenido</label>
+          <textarea id="content-body" name="content-body" rows="10" placeholder="Escribe tu contenido aquí..." required></textarea>
+        </div>
+        <button type="submit" class="btn">Crear Contenido</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
+
