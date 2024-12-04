@@ -1,19 +1,4 @@
-const contents = [
-    { 
-        name: "Guía de uso de la plataforma", 
-        type: "Privado", 
-        description: "Una guía completa para el uso efectivo de la plataforma.", 
-        author: "Juan Pérez", 
-        date: "2024-12-01" 
-    },
-    { 
-        name: "Blog: Ideas para optimizar tareas", 
-        type: "Privado", 
-        description: "Un artículo con ideas prácticas para optimizar tu productividad.", 
-        author: "María Gómez", 
-        date: "2024-12-02" 
-    },
-];
+let contents = [];
 
 const contentList = document.getElementById("content-list");
 const filterInput = document.getElementById("filter");
@@ -43,9 +28,10 @@ function renderContents(filteredContents) {
     });
 }
 
-// Filtrar contenido
+// Filtrar contenido por nombre
 filterInput.addEventListener("input", (event) => {
     const query = event.target.value.toLowerCase();
+    // Filtrar solo los contenidos cuyo nombre contiene la consulta
     const filteredContents = contents.filter(content =>
         content.name.toLowerCase().includes(query)
     );
@@ -71,9 +57,24 @@ modal.addEventListener("click", (event) => {
     }
 });
 
-// Inicializar
-renderContents(contents);
+// Obtener los datos de la API y filtrar los de tipo "Privado"
+async function fetchContents() {
+    try {
+        const response = await fetch("https://api-generator.retool.com/DOU8tz/data");
+        const data = await response.json();
+        
+        // Filtramos solo los elementos cuyo tipo sea "Privado"
+        const privateContents = data.filter(content => content.type === "Privado");
 
-  
-  
-  
+        // Asignamos los contenidos filtrados a la variable global `contents`
+        contents = privateContents;
+
+        // Renderizamos los contenidos filtrados inicialmente
+        renderContents(contents);
+    } catch (error) {
+        console.error("Error al obtener los contenidos:", error);
+    }
+}
+
+// Inicializar al cargar la página
+fetchContents();

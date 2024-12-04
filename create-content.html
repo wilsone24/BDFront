@@ -39,6 +39,51 @@
       </form>
     </section>
   </main>
+
+  <script>
+    document.getElementById('create-content-form').addEventListener('submit', function (event) {
+      event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+      
+      // Obtener la fecha actual
+      const currentDate = new Date().toISOString().split('T')[0]; // Formato YYYY-MM-DD
+      
+      // Obtener los valores del formulario
+      const title = document.getElementById('title').value;
+      const type = document.getElementById('type').value;
+      const contentBody = document.getElementById('content-body').value;
+      
+      // Obtener el autor desde localStorage
+      const author = localStorage.getItem('Name');
+      
+      // Crear el objeto JSON
+      const contentData = {
+        date: currentDate,
+        name: title,
+        type: type === "public" ? "Público" : (type === "private" ? "Privado" : "Organizacional"),
+        author: author ? author : "Desconocido",  // Si no hay autor en localStorage, se usa "Desconocido"
+        description: contentBody
+      };
+      
+      // Hacer la solicitud POST
+      fetch('https://api-generator.retool.com/DOU8tz/data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contentData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('Contenido creado exitosamente');
+        // Puedes redirigir o hacer alguna acción adicional aquí
+      })
+      .catch(error => {
+        console.error('Error al crear contenido:', error);
+        alert('Hubo un error al crear el contenido');
+      });
+    });
+  </script>
 </body>
 </html>
+
 
